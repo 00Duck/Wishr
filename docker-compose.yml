@@ -1,0 +1,43 @@
+version: '3'
+
+services:
+  wishr-db:
+    image: mysql:8.0.31
+    restart: always
+    environment:
+      - MYSQL_DATABASE=wishr
+      - MYSQL_USER=wishr
+      - MYSQL_PASSWORD=wishr
+      - MYSQL_ROOT_PASSWORD=super secret password
+    ports:
+      - 3306:3306
+    volumes:
+      - type: bind
+        source: /Users/blake/srv/wishr/db
+        target: /var/lib/mysql
+  
+  wishr-api:
+    image: 00duck/wishr-api:1.0.1
+    restart: always
+    ports:
+      - 9191:9191
+    depends_on:
+      - "wishr-db"
+    environment:
+      - DB_USER=wishr
+      - DB_PASSWORD=wishr
+      - DB_DATABASE=wishr
+      - DB_HOST=wishr-db
+      - DB_PORT=3306
+      - REGISTRATION_ENABLED=TRUE
+      - REGISTRATION_CODE=some-super-secret-arbitrary-values-go-here
+    
+  wishr-web:
+    image: 00duck/wishr-web:1.0.1
+    restart: always
+    ports:
+      - 80:80
+      - 443:443
+
+      
+      
