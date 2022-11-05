@@ -33,7 +33,7 @@ services:
       - REGISTRATION_CODE=some-super-secret-arbitrary-values-go-here
     
   wishr-web:
-    image: 00duck/wishr-web:1.0.1
+    image: 00duck/wishr-web:1.0.2
     restart: always
     ports:
       - 80:80
