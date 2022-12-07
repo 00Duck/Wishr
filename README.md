@@ -1,4 +1,4 @@
-<p align="center"><img src="./wishr-logo.svg" color="white" height="150px" width="150px"></img></p>
+<p align="center"><img src="./wishr-logo.svg" height="150px" width="150px"></img></p>
 
 # Wishr
 Share wishlists with your friends and family. Wishr is a completely free, self-hosted solution. No trackers, no ads, no catches. Simply download and run the docker compose file on a server of your choosing and share the link.
