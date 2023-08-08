@@ -17,7 +17,7 @@ services:
         target: /var/lib/mysql
   
   wishr-api:
-    image: 00duck/wishr-api:1.1.0
+    image: 00duck/wishr-api:1.1.1
     restart: always
     ports:
       - 9191:9191
@@ -29,11 +29,12 @@ services:
       - DB_DATABASE=wishr
       - DB_HOST=wishr-db
       - DB_PORT=3306
+      - USE_SECURE_COOKIE=TRUE # Set to false if configuring for localhost/non-https use only
       - REGISTRATION_ENABLED=TRUE
       - REGISTRATION_CODE=some-super-secret-arbitrary-values-go-here
     
   wishr-web:
-    image: 00duck/wishr-web:1.1.0
+    image: 00duck/wishr-web:1.2.5
     restart: always
     ports:
       - 80:80
