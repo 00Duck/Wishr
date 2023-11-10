@@ -12,12 +12,10 @@ services:
     ports:
       - 3306:3306
     volumes:
-      - type: bind
-        source: /srv/wishr/db
-        target: /var/lib/mysql
-  
+      - /srv/wishr/db:/var/lib/mysql
+
   wishr-api:
-    image: 00duck/wishr-api:1.1.1
+    image: 00duck/wishr-api:1.2.2
     restart: always
     ports:
       - 9191:9191
@@ -32,13 +30,17 @@ services:
       - USE_SECURE_COOKIE=TRUE # Set to false if configuring for localhost/non-https use only
       - REGISTRATION_ENABLED=TRUE
       - REGISTRATION_CODE=some-super-secret-arbitrary-values-go-here
-    
+    volumes:
+      - wishrimages:/app/images
+
   wishr-web:
-    image: 00duck/wishr-web:1.2.5
+    image: 00duck/wishr-web:1.4.1
     restart: always
     ports:
       - 80:80
       - 443:443
+volumes:
+  wishrimages:
 
       
       
