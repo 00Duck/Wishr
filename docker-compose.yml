@@ -15,7 +15,7 @@ services:
       - /srv/wishr/db:/var/lib/mysql
 
   wishr-api:
-    image: 00duck/wishr-api:1.2.2
+    image: 00duck/wishr-api:1.2.1
     restart: always
     ports:
       - 9191:9191
