@@ -15,7 +15,7 @@ services:
       - /srv/wishr/db:/var/lib/mysql
 
   wishr-api:
-    image: 00duck/wishr-api:1.2.1
+    image: 00duck/wishr-api:1.2.3
     restart: always
     ports:
       - 9191:9191
@@ -32,9 +32,10 @@ services:
       - REGISTRATION_CODE=some-super-secret-arbitrary-values-go-here
     volumes:
       - wishrimages:/app/images
+      - "./sockets:/app/sockets/" # CLI interface using cmd.sh. Disable if not needed.
 
   wishr-web:
-    image: 00duck/wishr-web:1.4.1
+    image: 00duck/wishr-web:1.4.3
     restart: always
     ports:
       - 80:80
