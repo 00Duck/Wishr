@@ -30,6 +30,17 @@ passwordReset () {
     echo "pwrc $username $password1" | sudo nc -U $cmdSock
 }
 
+generatePasswordResetLink () {
+    echo -n "Enter username: "
+    read -r username
+    if [ -z $username ]; then
+        echo "Username cannot be empty."
+        readNext
+    fi
+    echo "Connecting to server..."
+    echo "gpwr $username" | sudo nc -U $cmdSock
+}
+
 readNext () {
     echo -n "wishr> "
     read -r line
@@ -46,13 +57,17 @@ readNext () {
         "exit")
             exit 0
             ;;
-        "passwordreset")
+        "pwrc")
             passwordReset
+            ;;
+        "gpwr")
+            generatePasswordResetLink
             ;;
         "help")
             echo -e "\nCommand list:
-        help \t\t shows this command
-        passwordreset \t runs the password reset utility.
+        help \t\t Shows this command.
+        pwrc \t\t Runs the password reset utility to reset the user's password from the command line.
+        gpwr \t\t generates a link for the user to click to reset their password.
         ls users \t Prints the list of users from the database. Format userid:id:fullname
         ls wishlists \t Prints the list of wishlists from the database. Format name:id:ownername
             "
